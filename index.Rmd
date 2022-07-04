@@ -7,3 +7,28 @@ site: bookdown::bookdown_site
 
 # Tables
 
+## How do we print lm results in Rmarkdown html/pdf? 
+
+- https://zief0002.github.io/book-8252/pretty-printing-tables-in-markdown.html
+- https://cran.r-project.org/web/packages/broom/vignettes/broom.html
+- https://stackoverflow.com/questions/55712224/in-bookdown-avoid-wide-tables-to-be-cut-off
+
+```{r}
+library(broom)
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r}
+lm(mpg ~ wt, mtcars) %>%
+  tidy() %>%
+  knitr::kable()
+```
+
+```{r}
+lm(mpg ~ wt, mtcars) %>%
+  glance() %>%
+  knitr::kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", box_css = "border: 0px;")
+```
