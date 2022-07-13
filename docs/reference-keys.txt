@@ -1,3 +1,5 @@
 tables
 how-do-we-print-lm-results-in-rmarkdown-htmlpdf
-tbd
+subgroup-identification
+individualized-treatment-rules
+books

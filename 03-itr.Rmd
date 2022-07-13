@@ -1,0 +1,5 @@
+# Individualized treatment rules 
+
+## Books 
+
+- [Dynamic treatment regimes: statistical methods for precision medicine](https://laber-labs.com/dtr-book/)
