@@ -4,3 +4,6 @@ how-do-we-print-lm-results-in-rmarkdown-htmlpdf
 subgroup-identification
 individualized-treatment-rules
 books
+interaction
+example-1
+example-2
