@@ -310,16 +310,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Results are averaged over the levels of: percent 
 ## Confidence level used: 0.95</code></pre>
 <ul>
-<li><p>Model:
-<span class="math display">\[y_i=\alpha_0+\alpha_1 I(S_i=\text{soy})+\alpha_2 I(S_i=\text{skim})+\alpha_3 I(F_i=12)+\alpha_4 I(F_i=15)+ \\
-\alpha_5 I(F_i=18)+ \alpha_6 X_i\]</span></p></li>
-<li><p>Assume a <strong>balanced</strong> design, we have
+<li>Model:</li>
+</ul>
+<p><span class="math display">\[y_i=\alpha_0+\alpha_1 I(S_i=\text{soy})+\alpha_2 I(S_i=\text{skim})+\alpha_3 I(F_i=12)+\alpha_4 I(F_i=15)+ \\
+\alpha_5 I(F_i=18)+ \alpha_6 X_i \]</span></p>
+<ul>
+<li>Assume a <strong>balanced</strong> design, we have
 <span class="math display">\[\begin{equation*}
 \begin{split}
 E(y_i \mid S_i=\text{fish})=E_{X}\left\{\frac{1}{4}\left[E(y_i \mid S_i=\text{fish}, F_i=9,X)+E(y_i \mid S_i=\text{fish}, F_i=12,X)+ \\
 E(y_i \mid S_i=\text{fish}, F_i= 15,X)+E(y_i \mid S_i=\text{fish}, F_i=18,X)\right]\right\}
 \end{split}
-\end{equation*}\]</span></p></li>
+\end{equation*}\]</span></li>
 </ul>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="least-squares-mean.html#cb46-1" aria-hidden="true" tabindex="-1"></a>alpha0<span class="ot">=</span><span class="fu">as.vector</span>(<span class="fu">coef</span>(lm2))[<span class="dv">1</span>]</span>
 <span id="cb46-2"><a href="least-squares-mean.html#cb46-2" aria-hidden="true" tabindex="-1"></a>alpha1<span class="ot">=</span><span class="fu">as.vector</span>(<span class="fu">coef</span>(lm2))[<span class="dv">2</span>]</span>
