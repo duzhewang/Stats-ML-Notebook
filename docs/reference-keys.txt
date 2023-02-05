@@ -1,3 +1,4 @@
+r-notes
 tables
 how-do-we-print-lm-results-in-rmarkdown-htmlpdf
 subgroup-identification
