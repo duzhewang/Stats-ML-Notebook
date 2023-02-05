@@ -1,6 +1,6 @@
 --- 
-title: "Statistics and machine learning notes"
-author: "Duzhe Wang"
+title: "Statistics and Machine Learning Notes"
+author: "Duzhe Wang (duzhe.stat@gmail.com)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
