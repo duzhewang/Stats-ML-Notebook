@@ -7,3 +7,7 @@ books
 interaction
 example-1
 example-2
+least-squares-mean
+reference
+pigs-data-example
+iris-data-example
