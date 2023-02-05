@@ -1,0 +1,133 @@
+# Least squares mean 
+
+## Reference
+
+- https://cran.r-project.org/web/packages/emmeans/vignettes/basics.html
+- https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html
+
+
+## Pigs data example 
+
+```{r}
+library(emmeans)
+library(tidyverse)
+```
+
+```{r}
+with(pigs, interaction.plot(percent, source, conc))
+pigs%>%group_by(percent)%>%summarise(marginalmean=mean(conc))
+pigs%>%group_by(percent, source)%>%summarise(mean(conc))
+```
+
+
+
+```{r}
+lm1=lm(conc ~ source + factor(percent), data = pigs)
+summary(lm1)
+
+
+```
+
+
+```{r}
+lsm=emmeans(lm1, specs = "source")
+lsm
+pairs(lsm)
+```
+
+
+Check how estimated marginal mean is calculated: 
+
+```{r}
+lm1coef=as.vector(coef(lm1))
+
+# balanced design
+lm1coef[1]+(lm1coef[4]+lm1coef[5]+lm1coef[6])/4
+lm1coef[1]+lm1coef[2]+(lm1coef[4]+lm1coef[5]+lm1coef[6])/4
+lm1coef[1]+lm1coef[3]+(lm1coef[4]+lm1coef[5]+lm1coef[6])/4
+```
+
+
+Add one more column in pigs dataset
+
+```{r}
+set.seed(123)
+pigs$normalrv=rnorm(nrow(pigs), mean = 10, sd = 1)
+
+lm2=lm(conc ~ source + factor(percent) + normalrv, data = pigs)
+summary(lm2)
+emmeans(lm2, specs = "source")
+```
+
+
+- Model: $y_i=\alpha_0+\alpha_1 I(S_i=\text{soy})+\alpha_2 I(S_i=\text{skim})+\alpha_3 I(F_i=12)+\alpha_4 I(F_i=15)+\alpha_5 I(F_i=18)+ \alpha_6 X_i$
+
+- Assume a **balanced** design, we have 
+\begin{equation*}
+\begin{split}
+E(y_i \mid S_i=\text{fish})=E_{X}\left\{\frac{1}{4}\left[E(y_i \mid S_i=\text{fish}, F_i=9,X)+E(y_i \mid S_i=\text{fish}, F_i=12,X)+ \\
+E(y_i \mid S_i=\text{fish}, F_i= 15,X)+E(y_i \mid S_i=\text{fish}, F_i=18,X)\right]\right\}
+\end{split}
+\end{equation*}
+
+
+```{r}
+alpha0=as.vector(coef(lm2))[1]
+alpha1=as.vector(coef(lm2))[2]
+alpha2=as.vector(coef(lm2))[3]
+alpha3=as.vector(coef(lm2))[4]
+alpha4=as.vector(coef(lm2))[5]
+alpha5=as.vector(coef(lm2))[6]
+alpha6=as.vector(coef(lm2))[7]
+meanX=mean(pigs$normalrv)
+
+alpha0+(alpha3+alpha4+alpha5)/4+alpha6*meanX
+
+alpha0+alpha1+(alpha3+alpha4+alpha5)/4+alpha6*meanX
+
+alpha0+alpha2+(alpha3+alpha4+alpha5)/4+alpha6*meanX
+
+```
+
+
+## Iris data example 
+
+```{r}
+# make virginica the reference group 
+iris <- iris %>%
+  mutate( Species = forcats::fct_relevel(Species, 'virginica') )
+
+m1 <- lm( Sepal.Width ~ Sepal.Length + Species, data=iris )  # Parallel Lines
+summary(m1)
+
+```
+
+```{r}
+emmeans(m1, specs = "Species")
+```
+
+**Calculate the estimated marginal mean as follows:**
+
+- Model: $y_i=\alpha_0+\alpha_1X_i+\alpha_2 I(S_i=\text{setosa})+\alpha_3 I(S_i=\text{versicolor})$
+
+- $E(y_i \mid S_i=\text{virginica})=E_{X}(E(y_i \mid S_i=\text{virginica}, X))=\alpha_0+\alpha_1 E(X)$
+- $E(y_i \mid S_i=\text{setosa})=E_{X}(E(y_i \mid S_i=\text{setosa}, X))=\alpha_0+\alpha_1 E(X)+\alpha_2$
+- $E(y_i \mid S_i=\text{versicolor})=E_{X}(E(y_i \mid S_i=\text{versicolor}, X))=\alpha_0+\alpha_1E(X)+\alpha_3$
+
+
+```{r}
+alpha0=as.vector(coef(m1))[1]
+alpha1=as.vector(coef(m1))[2]
+alpha2=as.vector(coef(m1))[3]
+alpha3=as.vector(coef(m1))[4]
+meanX=mean(iris$Sepal.Length)
+
+alpha0+alpha1*meanX
+alpha0+alpha1*meanX+alpha2
+alpha0+alpha1*meanX+alpha3
+
+```
+
+
+
+
