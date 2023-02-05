@@ -60,7 +60,9 @@ emmeans(lm2, specs = "source")
 ```
 
 
-- Model: $y_i=\alpha_0+\alpha_1 I(S_i=\text{soy})+\alpha_2 I(S_i=\text{skim})+\alpha_3 I(F_i=12)+\alpha_4 I(F_i=15)+\alpha_5 I(F_i=18)+ \alpha_6 X_i$
+- Model: 
+\[y_i=\alpha_0+\alpha_1 I(S_i=\text{soy})+\alpha_2 I(S_i=\text{skim})+\alpha_3 I(F_i=12)+\alpha_4 I(F_i=15)+ \\
+\alpha_5 I(F_i=18)+ \alpha_6 X_i\]
 
 - Assume a **balanced** design, we have 
 \begin{equation*}
