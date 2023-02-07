@@ -1,0 +1,29 @@
+# Covariate adjustment
+
+## Odds ratio
+
+- From FDA guidance: while the adjusted estimator for a conditional odds ratio generally has a larger standard error than an unadjusted estimator of the unconditional odds ratio, this is not necessarily a disadvantage because these can be estimators of two different parameters. The conditional odds ratio will generally be farther from 1 than the unconditional odds ratio, and therefore, adjustment for baseline covariates can increase the power of hypothesis testing for superiority despite the increased standard error of treatment effect estimation. 
+
+
+
+
+
+
+
+
+
+
+## Reference
+
+- FDA guidance: https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adjusting-covariates-randomized-clinical-trials-drugs-and-biological-products
+
+- Robinson1991: https://www.jstor.org/stable/1403444
+
+- Toward Better Practice of Covariate Adjustment in Analyzing Randomized Clinical Trials: https://www.tandfonline.com/doi/abs/10.1080/01621459.2022.2049278?journalCode=uasa20
+
+
+
+
+
+
+

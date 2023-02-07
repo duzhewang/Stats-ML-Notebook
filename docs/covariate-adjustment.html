@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Individualized treatment rules | Statistics and Machine Learning Notes</title>
-  <meta name="description" content="Chapter 3 Individualized treatment rules | Statistics and Machine Learning Notes" />
+  <title>Chapter 6 Covariate adjustment | Statistics and Machine Learning Notes</title>
+  <meta name="description" content="Chapter 6 Covariate adjustment | Statistics and Machine Learning Notes" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Individualized treatment rules | Statistics and Machine Learning Notes" />
+  <meta property="og:title" content="Chapter 6 Covariate adjustment | Statistics and Machine Learning Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Individualized treatment rules | Statistics and Machine Learning Notes" />
+  <meta name="twitter:title" content="Chapter 6 Covariate adjustment | Statistics and Machine Learning Notes" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="subgroup-identification.html"/>
-<link rel="next" href="interaction.html"/>
+<link rel="prev" href="least-squares-mean.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -186,12 +186,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="individualized-treatment-rules" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Individualized treatment rules<a href="individualized-treatment-rules.html#individualized-treatment-rules" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="books" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Books<a href="individualized-treatment-rules.html#books" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="covariate-adjustment" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Covariate adjustment<a href="covariate-adjustment.html#covariate-adjustment" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="odds-ratio" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Odds ratio<a href="covariate-adjustment.html#odds-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><a href="https://laber-labs.com/dtr-book/">Dynamic treatment regimes: statistical methods for precision medicine</a></li>
+<li>From FDA guidance: while the adjusted estimator for a conditional odds ratio generally has a larger standard error than an unadjusted estimator of the unconditional odds ratio, this is not necessarily a disadvantage because these can be estimators of two different parameters. The conditional odds ratio will generally be farther from 1 than the unconditional odds ratio, and therefore, adjustment for baseline covariates can increase the power of hypothesis testing for superiority despite the increased standard error of treatment effect estimation.</li>
+</ul>
+</div>
+<div id="reference-1" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Reference<a href="covariate-adjustment.html#reference-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>FDA guidance: <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adjusting-covariates-randomized-clinical-trials-drugs-and-biological-products" class="uri">https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adjusting-covariates-randomized-clinical-trials-drugs-and-biological-products</a></p></li>
+<li><p>Robinson1991: <a href="https://www.jstor.org/stable/1403444" class="uri">https://www.jstor.org/stable/1403444</a></p></li>
+<li><p>Toward Better Practice of Covariate Adjustment in Analyzing Randomized Clinical Trials: <a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.2022.2049278?journalCode=uasa20" class="uri">https://www.tandfonline.com/doi/abs/10.1080/01621459.2022.2049278?journalCode=uasa20</a></p></li>
 </ul>
 
 </div>
@@ -201,8 +209,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="subgroup-identification.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="interaction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="least-squares-mean.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,7 +241,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/duzhewang/STATS-ML-Notes/edit/master/03-itr.Rmd",
+"link": "https://github.com/duzhewang/STATS-ML-Notes/edit/master/06-covariate-adjustment.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -241,7 +249,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/duzhewang/STATS-ML-Notes/blob/master/03-itr.Rmd",
+"link": "https://github.com/duzhewang/STATS-ML-Notes/blob/master/06-covariate-adjustment.Rmd",
 "text": null
 },
 "download": null,

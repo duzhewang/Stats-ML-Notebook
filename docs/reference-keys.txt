@@ -12,3 +12,6 @@ least-squares-mean
 reference
 pigs-data-example
 iris-data-example
+covariate-adjustment
+odds-ratio
+reference-1
