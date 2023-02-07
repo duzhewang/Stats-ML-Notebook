@@ -1,6 +1,7 @@
 r-notes
 tables
 how-do-we-print-lm-results-in-rmarkdown-htmlpdf
+joint-linear-regression-and-separate-linear-regression
 subgroup-identification
 individualized-treatment-rules
 books

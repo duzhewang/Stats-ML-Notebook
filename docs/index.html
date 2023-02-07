@@ -23,7 +23,7 @@
 <meta name="author" content="Duzhe Wang (duzhe.stat@gmail.com)" />
 
 
-<meta name="date" content="2023-02-04" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,6 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#how-do-we-print-lm-results-in-rmarkdown-htmlpdf"><i class="fa fa-check"></i><b>1.1.1</b> How do we print lm results in Rmarkdown html/pdf?</a></li>
 </ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#joint-linear-regression-and-separate-linear-regression"><i class="fa fa-check"></i><b>1.2</b> Joint linear regression and separate linear regression</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="subgroup-identification.html"><a href="subgroup-identification.html"><i class="fa fa-check"></i><b>2</b> Subgroup identification</a></li>
 <li class="chapter" data-level="3" data-path="individualized-treatment-rules.html"><a href="individualized-treatment-rules.html"><i class="fa fa-check"></i><b>3</b> Individualized treatment rules</a>
@@ -183,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Statistics and Machine Learning Notes</h1>
 <p class="author"><em>Duzhe Wang (<a href="mailto:duzhe.stat@gmail.com" class="email">duzhe.stat@gmail.com</a>)</em></p>
-<p class="date"><em>2023-02-04</em></p>
+<p class="date"><em>2023-02-07</em></p>
 </div>
 <div id="r-notes" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> R notes<a href="index.html#r-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -348,8 +349,83 @@ nobs
 </tbody>
 </table>
 </div>
-
 </div>
+</div>
+<div id="joint-linear-regression-and-separate-linear-regression" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Joint linear regression and separate linear regression<a href="index.html#joint-linear-regression-and-separate-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">trt =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>)),</span>
+<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">subgroup =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;MDA&quot;</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="st">&quot;HDA&quot;</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="st">&quot;MDA&quot;</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="st">&quot;HDA&quot;</span>, <span class="dv">5</span>)),</span>
+<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="index.html#cb4-4" aria-hidden="true" tabindex="-1"></a>                  )</span>
+<span id="cb4-5"><a href="index.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># joint model </span></span>
+<span id="cb4-6"><a href="index.html#cb4-6" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> trt <span class="sc">+</span> subgroup, <span class="at">data =</span> data)</span>
+<span id="cb4-7"><a href="index.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ trt + subgroup, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.2417 -0.2930  0.1353  0.6142  1.4178 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   4.4265     0.3951  11.204 2.86e-09 ***
+## trt           0.6468     0.4562   1.418    0.174    
+## subgroupMDA   0.3780     0.4562   0.829    0.419    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.02 on 17 degrees of freedom
+## Multiple R-squared:  0.1369, Adjusted R-squared:  0.03538 
+## F-statistic: 1.348 on 2 and 17 DF,  p-value: 0.286</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separate models </span></span>
+<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a>data.sub2 <span class="ot">=</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(subgroup <span class="sc">==</span> <span class="st">&quot;MDA&quot;</span>)</span>
+<span id="cb6-3"><a href="index.html#cb6-3" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">=</span> <span class="fu">lm</span>( y <span class="sc">~</span> trt, <span class="at">data =</span> data.sub2)</span>
+<span id="cb6-4"><a href="index.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ trt, data = data.sub2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.1896 -0.9632  0.2377  1.0326  1.4699 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   4.7523     0.6006   7.913 4.72e-05 ***
+## trt           0.7511     0.8493   0.884    0.402    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.343 on 8 degrees of freedom
+## Multiple R-squared:  0.08906,    Adjusted R-squared:  -0.02481 
+## F-statistic: 0.7821 on 1 and 8 DF,  p-value: 0.4023</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a>data.sub3 <span class="ot">=</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(subgroup <span class="sc">==</span> <span class="st">&quot;HDA&quot;</span>)</span>
+<span id="cb8-2"><a href="index.html#cb8-2" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> trt, <span class="at">data =</span> data.sub3)</span>
+<span id="cb8-3"><a href="index.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ trt, data = data.sub3)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.3128 -0.1927  0.1874  0.3168  0.7220 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   4.4786     0.2832  15.812 2.56e-07 ***
+## trt           0.5426     0.4006   1.355    0.213    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6333 on 8 degrees of freedom
+## Multiple R-squared:  0.1866, Adjusted R-squared:  0.08487 
+## F-statistic: 1.835 on 1 and 8 DF,  p-value: 0.2126</code></pre>
+<ul>
+<li>The above three models do not have a direct connection in terms of estimation and prediction</li>
+</ul>
+
 </div>
 </div>
             </section>

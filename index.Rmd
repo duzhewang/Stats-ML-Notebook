@@ -34,3 +34,30 @@ lm(mpg ~ wt, mtcars) %>%
   kable_styling() %>%
   scroll_box(width = "100%", box_css = "border: 0px;")
 ```
+
+
+## Joint linear regression and separate linear regression 
+
+```{r}
+data = data.frame(trt = c(rep(0, 10), rep(1, 10)),
+                  subgroup = c(rep("MDA", 5), rep("HDA", 5), rep("MDA", 5), rep("HDA", 5)),
+                  y = rnorm(20, 5, 1)
+                  )
+# joint model 
+lm1 = lm(y ~ trt + subgroup, data = data)
+summary(lm1)
+
+# separate models 
+data.sub2 = data %>% filter(subgroup == "MDA")
+lm2 = lm( y ~ trt, data = data.sub2)
+summary(lm2)
+
+data.sub3 = data %>% filter(subgroup == "HDA")
+lm3 = lm(y ~ trt, data = data.sub3)
+summary(lm3)
+```
+
+- The above three models do not have a direct connection in terms of estimation and prediction 
+
+
+
