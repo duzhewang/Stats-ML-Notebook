@@ -4,10 +4,15 @@
 
 - From FDA guidance: while the adjusted estimator for a conditional odds ratio generally has a larger standard error than an unadjusted estimator of the unconditional odds ratio, this is not necessarily a disadvantage because these can be estimators of two different parameters. The conditional odds ratio will generally be farther from 1 than the unconditional odds ratio, and therefore, adjustment for baseline covariates can increase the power of hypothesis testing for superiority despite the increased standard error of treatment effect estimation. 
 
+## Toward Better Practice of Covariate Adjustment in Analyzing Randomized Clinical Trials
 
+- Baseline covariates are encouraged to be utilized in two ways: (1) in the design stage, covariate-adaptive randomization can be used to enforce the balance of treatment assignments across levels of discrete baseline prognostic factors. Balance of treatment groups with respect to one or more specific prognostic covariates can enhance the credibility of the results of the trial. (2) in the analysis stage, baseline covariates can be used to gain efficiency. 
 
-
-
+- Considerations about covariate adjustment
+  - 1. **Guaranteed efficiency gain**: the working model should be chosen so that resulting model-assisted estimator often gains but never loses efficiency when compared to a benchmark estimator that does not adjust for any covariate
+  - 2. **Wide applicability**: the model-assisted inference procedure should be applicable to all commonly used randomization schemes 
+  - 3. **Robust standard error**: the model-assisted inference should use standard errors robust against model misspecification and heteroscedasticity
+  
 
 
 

@@ -23,7 +23,7 @@
 <meta name="author" content="Duzhe Wang (duzhe.stat@gmail.com)" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html"><i class="fa fa-check"></i><b>6</b> Covariate adjustment</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#odds-ratio"><i class="fa fa-check"></i><b>6.1</b> Odds ratio</a></li>
-<li class="chapter" data-level="6.2" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#reference-1"><i class="fa fa-check"></i><b>6.2</b> Reference</a></li>
+<li class="chapter" data-level="6.2" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#toward-better-practice-of-covariate-adjustment-in-analyzing-randomized-clinical-trials"><i class="fa fa-check"></i><b>6.2</b> Toward Better Practice of Covariate Adjustment in Analyzing Randomized Clinical Trials</a></li>
+<li class="chapter" data-level="6.3" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#reference-1"><i class="fa fa-check"></i><b>6.3</b> Reference</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -194,8 +195,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>From FDA guidance: while the adjusted estimator for a conditional odds ratio generally has a larger standard error than an unadjusted estimator of the unconditional odds ratio, this is not necessarily a disadvantage because these can be estimators of two different parameters. The conditional odds ratio will generally be farther from 1 than the unconditional odds ratio, and therefore, adjustment for baseline covariates can increase the power of hypothesis testing for superiority despite the increased standard error of treatment effect estimation.</li>
 </ul>
 </div>
-<div id="reference-1" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Reference<a href="covariate-adjustment.html#reference-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="toward-better-practice-of-covariate-adjustment-in-analyzing-randomized-clinical-trials" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Toward Better Practice of Covariate Adjustment in Analyzing Randomized Clinical Trials<a href="covariate-adjustment.html#toward-better-practice-of-covariate-adjustment-in-analyzing-randomized-clinical-trials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Baseline covariates are encouraged to be utilized in two ways: (1) in the design stage, covariate-adaptive randomization can be used to enforce the balance of treatment assignments across levels of discrete baseline prognostic factors. Balance of treatment groups with respect to one or more specific prognostic covariates can enhance the credibility of the results of the trial. (2) in the analysis stage, baseline covariates can be used to gain efficiency.</p></li>
+<li><p>Considerations about covariate adjustment</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li><strong>Guaranteed efficiency gain</strong>: the working model should be chosen so that resulting model-assisted estimator often gains but never loses efficiency when compared to a benchmark estimator that does not adjust for any covariate</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li><strong>Wide applicability</strong>: the model-assisted inference procedure should be applicable to all commonly used randomization schemes</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li><strong>Robust standard error</strong>: the model-assisted inference should use standard errors robust against model misspecification and heteroscedasticity</li>
+</ol></li>
+</ul></li>
+</ul>
+</div>
+<div id="reference-1" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Reference<a href="covariate-adjustment.html#reference-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>FDA guidance: <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adjusting-covariates-randomized-clinical-trials-drugs-and-biological-products" class="uri">https://www.fda.gov/regulatory-information/search-fda-guidance-documents/adjusting-covariates-randomized-clinical-trials-drugs-and-biological-products</a></p></li>
 <li><p>Robinson1991: <a href="https://www.jstor.org/stable/1403444" class="uri">https://www.jstor.org/stable/1403444</a></p></li>

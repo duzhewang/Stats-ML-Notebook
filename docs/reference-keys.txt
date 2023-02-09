@@ -14,4 +14,5 @@ pigs-data-example
 iris-data-example
 covariate-adjustment
 odds-ratio
+toward-better-practice-of-covariate-adjustment-in-analyzing-randomized-clinical-trials
 reference-1

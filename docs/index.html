@@ -23,7 +23,7 @@
 <meta name="author" content="Duzhe Wang (duzhe.stat@gmail.com)" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html"><i class="fa fa-check"></i><b>6</b> Covariate adjustment</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#odds-ratio"><i class="fa fa-check"></i><b>6.1</b> Odds ratio</a></li>
-<li class="chapter" data-level="6.2" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#reference-1"><i class="fa fa-check"></i><b>6.2</b> Reference</a></li>
+<li class="chapter" data-level="6.2" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#toward-better-practice-of-covariate-adjustment-in-analyzing-randomized-clinical-trials"><i class="fa fa-check"></i><b>6.2</b> Toward Better Practice of Covariate Adjustment in Analyzing Randomized Clinical Trials</a></li>
+<li class="chapter" data-level="6.3" data-path="covariate-adjustment.html"><a href="covariate-adjustment.html#reference-1"><i class="fa fa-check"></i><b>6.3</b> Reference</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -189,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Statistics and Machine Learning Notes</h1>
 <p class="author"><em>Duzhe Wang (<a href="mailto:duzhe.stat@gmail.com" class="email">duzhe.stat@gmail.com</a>)</em></p>
-<p class="date"><em>2023-02-07</em></p>
+<p class="date"><em>2023-02-08</em></p>
 </div>
 <div id="r-notes" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> R notes<a href="index.html#r-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -371,19 +372,19 @@ nobs
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.9213 -0.3904 -0.1901  0.4621  1.6442 
+## -1.2813 -0.5474 -0.1686  0.3641  2.1530 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   5.1446     0.3224  15.955 1.16e-11 ***
-## trt           0.1307     0.3723   0.351    0.730    
-## subgroupMDA   0.2806     0.3723   0.754    0.461    
+## (Intercept)   5.4311     0.3416  15.901 1.22e-11 ***
+## trt          -0.5239     0.3944  -1.328    0.202    
+## subgroupMDA   0.1087     0.3944   0.276    0.786    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8325 on 17 degrees of freedom
-## Multiple R-squared:  0.03907,    Adjusted R-squared:  -0.07398 
-## F-statistic: 0.3456 on 2 and 17 DF,  p-value: 0.7127</code></pre>
+## Residual standard error: 0.8819 on 17 degrees of freedom
+## Multiple R-squared:  0.09769,    Adjusted R-squared:  -0.008461 
+## F-statistic: 0.9203 on 2 and 17 DF,  p-value: 0.4174</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separate models </span></span>
 <span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a>data.sub2 <span class="ot">=</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(subgroup <span class="sc">==</span> <span class="st">&quot;MDA&quot;</span>)</span>
 <span id="cb6-3"><a href="index.html#cb6-3" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">=</span> <span class="fu">lm</span>( y <span class="sc">~</span> trt, <span class="at">data =</span> data.sub2)</span>
@@ -393,19 +394,19 @@ nobs
 ## lm(formula = y ~ trt, data = data.sub2)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.68222 -0.46395  0.01856  0.68277  1.28952 
+##     Min      1Q  Median      3Q     Max 
+## -1.1895 -0.5402 -0.1686  0.2592  2.2449 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   5.6643     0.4166   13.60 8.23e-07 ***
-## trt          -0.3474     0.5891   -0.59    0.572    
+## (Intercept)   5.6317     0.4573  12.315 1.76e-06 ***
+## trt          -0.7076     0.6467  -1.094    0.306    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9315 on 8 degrees of freedom
-## Multiple R-squared:  0.04165,    Adjusted R-squared:  -0.07814 
-## F-statistic: 0.3477 on 1 and 8 DF,  p-value: 0.5717</code></pre>
+## Residual standard error: 1.023 on 8 degrees of freedom
+## Multiple R-squared:  0.1302, Adjusted R-squared:  0.02142 
+## F-statistic: 1.197 on 1 and 8 DF,  p-value: 0.3058</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a>data.sub3 <span class="ot">=</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(subgroup <span class="sc">==</span> <span class="st">&quot;HDA&quot;</span>)</span>
 <span id="cb8-2"><a href="index.html#cb8-2" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> trt, <span class="at">data =</span> data.sub3)</span>
 <span id="cb8-3"><a href="index.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm3)</span></code></pre></div>
@@ -414,19 +415,19 @@ nobs
 ## lm(formula = y ~ trt, data = data.sub3)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -0.5966 -0.4789 -0.2029  0.2169  1.4051 
+##      Min       1Q   Median       3Q      Max 
+## -1.12216 -0.44977 -0.09325  0.44909  1.20891 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   4.9056     0.3041  16.133 2.19e-07 ***
-## trt           0.6089     0.4300   1.416    0.195    
+## (Intercept)   5.3393     0.3423  15.598 2.85e-07 ***
+## trt          -0.3402     0.4841  -0.703    0.502    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.6799 on 8 degrees of freedom
-## Multiple R-squared:  0.2004, Adjusted R-squared:  0.1004 
-## F-statistic: 2.005 on 1 and 8 DF,  p-value: 0.1946</code></pre>
+## Residual standard error: 0.7654 on 8 degrees of freedom
+## Multiple R-squared:  0.05814,    Adjusted R-squared:  -0.05959 
+## F-statistic: 0.4939 on 1 and 8 DF,  p-value: 0.5021</code></pre>
 <ul>
 <li>The above three models do not have a direct connection in terms of estimation and prediction</li>
 </ul>
